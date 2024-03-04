@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <body>
+        {% if 'username' in session %}
+        <h1>Welcome, {{ session['username'] }}!</h1>
+        <h2>Products</h2>
+        <ul>
+            {% for product in products %}
+                <li>
+                    <a href="{{ url_for('product_detail', product_id=product['id']) }}">
+                        {{ product['name'] }} - ${{ product['price'] }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You need to log in to view the products. <a href="{{ url_for('add_post_form') }}">Log in here</a>.</p>
+    {% endif %}
+</body>
+</html>
